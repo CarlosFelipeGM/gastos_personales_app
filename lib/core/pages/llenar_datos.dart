@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:gastos_personales_app/core/components/input_custom.dart';
 import 'package:gastos_personales_app/models/gasto_personal.dart';
+import 'package:uuid/uuid.dart';
 
 class LlenarDatos extends StatefulWidget {
   const LlenarDatos({
@@ -63,6 +64,7 @@ class _LlenarDatosState extends State<LlenarDatos> {
               // boton
               ElevatedButton.icon(
                 onPressed: () {
+                  _agregarGasto();
                   Navigator.pop(context);
                 },
                 icon: Icon(Icons.add),
@@ -73,6 +75,28 @@ class _LlenarDatosState extends State<LlenarDatos> {
         ),
       ),
     );
+  }
+
+  void _agregarGasto() {
+    final esValido = _idForm.currentState?.validate() ?? false;
+    if (esValido) {
+      final id = Uuid().v1();
+      final descripcion = _descripcionController.text;
+      final fecha = _fechaController.text;
+      final precio = _precioController.text;
+      final gastoPersonal = GastoPersonal(
+        id: id,
+        descripcion: descripcion,
+        fecha: fecha,
+        precio: precio,
+      );
+
+      widget.alAgregar(gastoPersonal);
+
+      _fechaController.clear();
+      _descripcionController.clear();
+      _precioController.clear();
+    }
   }
 
   @override

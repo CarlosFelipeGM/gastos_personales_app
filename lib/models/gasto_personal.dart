@@ -1,13 +1,13 @@
 class GastoPersonal {
   final String id;
   final String descripcion;
-  final DateTime fecha;
-  final double monto;
+  final String fecha;
+  final String precio;
 
   GastoPersonal({
     required this.id,
     required this.descripcion,
     required this.fecha,
-    required this.monto,
+    required this.precio,
   });
 }

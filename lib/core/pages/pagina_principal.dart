@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gastos_personales_app/core/components/tarjeta_gasto.dart';
 import 'package:gastos_personales_app/core/pages/llenar_datos.dart';
 import 'package:gastos_personales_app/models/gasto_personal.dart';
 
@@ -56,9 +57,9 @@ class _PaginaPrincipalState extends State<PaginaPrincipal> {
 
   ListView listadoGastosPersonales() {
     return ListView(
-        // children: gastosPersonales.map((gastoPersonal) {
-
-        // }).toList(),
-        );
+      children: gastosPersonales.map((gastoPersonal) {
+        return TarjetaGasto(gastoPersonal: gastoPersonal);
+      }).toList(),
+    );
   }
 }
