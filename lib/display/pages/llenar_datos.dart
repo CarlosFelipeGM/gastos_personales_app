@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-import 'package:gastos_personales_app/core/components/input_custom.dart';
-import 'package:gastos_personales_app/models/gasto_personal.dart';
+import 'package:gastos_personales_app/display/components/input_custom.dart';
+import 'package:gastos_personales_app/data/models/gasto_personal.dart';
 import 'package:uuid/uuid.dart';
 
 class LlenarDatos extends StatefulWidget {

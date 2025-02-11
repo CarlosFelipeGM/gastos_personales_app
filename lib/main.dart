@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gastos_personales_app/core/pages/pagina_principal.dart';
+import 'package:gastos_personales_app/display/pages/pagina_principal.dart';
 
 void main() {
   runApp(const MyApp());
