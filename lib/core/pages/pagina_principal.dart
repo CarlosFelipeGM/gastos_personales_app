@@ -3,7 +3,9 @@ import 'package:gastos_personales_app/core/pages/llenar_datos.dart';
 import 'package:gastos_personales_app/models/gasto_personal.dart';
 
 class PaginaPrincipal extends StatefulWidget {
-  const PaginaPrincipal({super.key});
+  const PaginaPrincipal({
+    super.key,
+  });
 
   @override
   State<PaginaPrincipal> createState() => _PaginaPrincipalState();
@@ -23,7 +25,14 @@ class _PaginaPrincipalState extends State<PaginaPrincipal> {
                 showModalBottomSheet(
                   context: context,
                   builder: (_) {
-                    return LlenarDatos();
+                    return LlenarDatos(
+                      alAgregar: (gastoPersonal) {
+                        setState(() {
+                          gastosPersonales.add(gastoPersonal);
+                        });
+                      },
+                      gastosPersonales: gastosPersonales,
+                    );
                   },
                 );
               },
@@ -45,11 +54,11 @@ class _PaginaPrincipalState extends State<PaginaPrincipal> {
     );
   }
 
-  SingleChildScrollView listadoGastosPersonales() {
-    return SingleChildScrollView(
-      child: Column(
-        children: [],
-      ),
-    );
+  ListView listadoGastosPersonales() {
+    return ListView(
+        // children: gastosPersonales.map((gastoPersonal) {
+
+        // }).toList(),
+        );
   }
 }
