@@ -17,7 +17,6 @@ class PaginaPrincipal extends StatefulWidget {
 class _PaginaPrincipalState extends State<PaginaPrincipal>
     with SingleTickerProviderStateMixin {
   final gastosPersonales = <GastoPersonal>[];
-  late final controllerSlidable = SlidableController(this);
 
   @override
   Widget build(BuildContext context) {
@@ -66,11 +65,16 @@ class _PaginaPrincipalState extends State<PaginaPrincipal>
       children: gastosPersonales.map((gastoPersonal) {
         return Slidable(
           key: const ValueKey(0),
-          startActionPane: const ActionPane(
-            motion: ScrollMotion(),
+          startActionPane: ActionPane(
+            motion: const ScrollMotion(),
             children: [
               SlidableAction(
-                onPressed: doNothing,
+                onPressed: (_) {
+                  setState(() {
+                    gastosPersonales.removeWhere(
+                        (elemento) => elemento.id == gastoPersonal.id);
+                  });
+                },
                 backgroundColor: Colors.red,
                 foregroundColor: Colors.white,
                 icon: Icons.delete,
@@ -81,12 +85,6 @@ class _PaginaPrincipalState extends State<PaginaPrincipal>
           child: TarjetaGasto(gastoPersonal: gastoPersonal),
         );
       }).toList(),
-
-      // children: gastosPersonales.map((gastoPersonal) {
-      //   return TarjetaGasto(gastoPersonal: gastoPersonal);
-      // }).toList(),
     );
   }
 }
-
-void doNothing(BuildContext context) {}
