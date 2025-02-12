@@ -64,7 +64,7 @@ class _PaginaPrincipalState extends State<PaginaPrincipal>
       padding: EdgeInsets.symmetric(vertical: 16, horizontal: 8),
       children: gastosPersonales.map((gastoPersonal) {
         return Slidable(
-          key: const ValueKey(0),
+          key: ValueKey(gastoPersonal.id),
           startActionPane: ActionPane(
             motion: const ScrollMotion(),
             children: [

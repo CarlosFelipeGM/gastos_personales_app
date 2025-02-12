@@ -23,6 +23,22 @@ class _LlenarDatosState extends State<LlenarDatos> {
   final _fechaController = TextEditingController();
   final _descripcionController = TextEditingController();
   final _precioController = TextEditingController();
+
+  Future<void> _selectDate() async {
+    DateTime? picket = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
+    );
+
+    if (picket != null) {
+      setState(() {
+        _fechaController.text = picket.toString().split(" ")[0];
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -37,12 +53,23 @@ class _LlenarDatosState extends State<LlenarDatos> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               // fecha
-              InputCustom(
-                label: 'Fecha',
+              TextFormField(
                 controller: _fechaController,
+                readOnly: true,
+                decoration: InputDecoration(
+                  enabledBorder: OutlineInputBorder(),
+                  focusedBorder: OutlineInputBorder(),
+                  errorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red),
+                  ),
+                  label: Text('Fecha'),
+                ),
                 validator: (valor) =>
                     RequiredValidator(errorText: 'La fecha es requerida')
                         .call(valor),
+                onTap: () {
+                  _selectDate();
+                },
               ),
               // descripcion
               InputCustom(
@@ -52,7 +79,7 @@ class _LlenarDatosState extends State<LlenarDatos> {
                     RequiredValidator(errorText: 'La descripcion es requerida')
                         .call(valor),
               ),
-              // monto
+              // precio
               InputCustom(
                 label: 'Precio',
                 controller: _precioController,

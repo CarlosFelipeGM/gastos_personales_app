@@ -17,7 +17,7 @@ class TarjetaGasto extends StatelessWidget {
         subtitle: Text(gastoPersonal.fecha),
         leading: ElevatedButton(
           onPressed: () {},
-          child: Text(gastoPersonal.precio),
+          child: Text("S/. ${gastoPersonal.precio}"),
         ),
       ),
     );
